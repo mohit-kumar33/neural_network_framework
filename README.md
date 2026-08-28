@@ -28,42 +28,8 @@
 
 The codebase is intentionally small (~1 200 lines), heavily commented, and mirrors the PyTorch API so it's easy to follow.
 
----
 
-## Project Structure
 
-```
-neural_network_framework/
-│
-├── neural_network_framework/                  ← framework package
-│   ├── tensor.py              ← Tensor class + autograd engine ⭐
-│   ├── loss.py                ← MSE, BCE, CrossEntropy, NLL
-│   │
-│   ├── nn/
-│   │   ├── module.py          ← Module, Sequential base classes
-│   │   ├── layers.py          ← Linear, BatchNorm1d, Dropout, Embedding
-│   │   └── activations.py     ← ReLU, Sigmoid, Tanh, GELU, Softmax …
-│   │
-│   ├── optim/
-│   │   ├── sgd.py             ← SGD + momentum + Nesterov + weight decay
-│   │   └── adam.py            ← Adam (AMSGrad) + AdamW
-│   │
-│   └── utils/
-│       ├── data.py            ← Dataset / DataLoader
-│       └── init.py            ← Xavier / He / Orthogonal initialisers
-│
-├── examples/
-│   ├── 01_xor.py              ← XOR gate — why depth matters
-│   ├── 02_mnist.py            ← MNIST handwritten digits (~97% acc)
-│   └── 03_regression.py       ← Sine-wave regression + matplotlib plot
-│
-├── tests/
-│   ├── test_tensor.py         ← Gradient checks via finite differences
-│   ├── test_layers.py         ← Layer / activation / loss correctness
-│   └── test_optim.py          ← SGD, Adam, AdamW convergence tests
-│
-├── requirements.txt
-└── README.md
 ```
 
 ---
@@ -303,6 +269,43 @@ return out
 ```
 
 Adding a new layer means subclassing `Module` and implementing `forward()`. The `parameters()` method is auto-discovered via Python's `vars()` — no registration needed.
+
+---
+
+## Project Structure
+
+```
+neural_network_framework/
+│
+├── neural_network_framework/                  ← framework package
+│   ├── tensor.py              ← Tensor class + autograd engine ⭐
+│   ├── loss.py                ← MSE, BCE, CrossEntropy, NLL
+│   │
+│   ├── nn/
+│   │   ├── module.py          ← Module, Sequential base classes
+│   │   ├── layers.py          ← Linear, BatchNorm1d, Dropout, Embedding
+│   │   └── activations.py     ← ReLU, Sigmoid, Tanh, GELU, Softmax …
+│   │
+│   ├── optim/
+│   │   ├── sgd.py             ← SGD + momentum + Nesterov + weight decay
+│   │   └── adam.py            ← Adam (AMSGrad) + AdamW
+│   │
+│   └── utils/
+│       ├── data.py            ← Dataset / DataLoader
+│       └── init.py            ← Xavier / He / Orthogonal initialisers
+│
+├── examples/
+│   ├── 01_xor.py              ← XOR gate — why depth matters
+│   ├── 02_mnist.py            ← MNIST handwritten digits (~97% acc)
+│   └── 03_regression.py       ← Sine-wave regression + matplotlib plot
+│
+├── tests/
+│   ├── test_tensor.py         ← Gradient checks via finite differences
+│   ├── test_layers.py         ← Layer / activation / loss correctness
+│   └── test_optim.py          ← SGD, Adam, AdamW convergence tests
+│
+├── requirements.txt
+└── README.md
 
 ---
 
