@@ -1,0 +1,44 @@
+digraph neural_network_frameworkComputationGraph {
+  graph [rankdir=TB, splines=ortho, bgcolor="#F8F9FA",          fontname="Helvetica Neue", label="neural_network_framework computation graph",          labelloc=t, fontsize=14];
+  node  [fontname="Helvetica Neue", fontsize=10,          style="filled,rounded", margin="0.25,0.12"];
+  edge  [color="#555555", arrowsize=0.75, fontsize=8,          fontcolor="#666666", fontname="Helvetica Neue"];
+
+  n0 [label="ℒ  BCEWithLogitsLoss\nscalar\n‖∇‖=1.0000", shape=box, fillcolor="#F1948A", penwidth=1.0, color="#333333"];
+  n1 [label="⊕  Add\n(4×1)\n‖∇‖=0.2444", shape=box, fillcolor="#AED6F1", penwidth=1.0, color="#333333"];
+  n2 [label="⊗  MatMul\n(4×1)\n‖∇‖=0.2444", shape=box, fillcolor="#A9DFBF", penwidth=1.0, color="#333333"];
+  n3 [label="PARAM\nscalar\n‖∇‖=0.0093", shape=diamond, fillcolor="#F7DC6F", penwidth=2.0, color="#333333"];
+  n4 [label="σ  ReLU\n(4×4)\n‖∇‖=0.2298", shape=box, fillcolor="#85C1E9", penwidth=1.0, color="#333333"];
+  n5 [label="⊗  Transpose\n(4×1)\n‖∇‖=0.0326", shape=box, fillcolor="#A9DFBF", penwidth=1.0, color="#333333"];
+  n6 [label="⊕  Add\n(4×4)\n‖∇‖=0.1210", shape=box, fillcolor="#AED6F1", penwidth=1.0, color="#333333"];
+  n7 [label="PARAM\n(1×4)\n‖∇‖=0.0326", shape=diamond, fillcolor="#F7DC6F", penwidth=2.0, color="#333333"];
+  n8 [label="⊗  MatMul\n(4×4)\n‖∇‖=0.1210", shape=box, fillcolor="#A9DFBF", penwidth=1.0, color="#333333"];
+  n9 [label="PARAM\n(4)\n‖∇‖=0.1121", shape=diamond, fillcolor="#F7DC6F", penwidth=2.0, color="#333333"];
+  n10 [label="⊗  Transpose\n(8×4)\n‖∇‖=0.0807", shape=box, fillcolor="#A9DFBF", penwidth=1.0, color="#333333"];
+  n11 [label="σ  ReLU\n(4×8)\n‖∇‖=0.1463", shape=box, fillcolor="#85C1E9", penwidth=1.0, color="#333333"];
+  n12 [label="PARAM\n(4×8)\n‖∇‖=0.0807", shape=diamond, fillcolor="#F7DC6F", penwidth=2.0, color="#333333"];
+  n13 [label="⊕  Add\n(4×8)\n‖∇‖=0.0787", shape=box, fillcolor="#AED6F1", penwidth=1.0, color="#333333"];
+  n14 [label="PARAM\n(8)\n‖∇‖=0.0624", shape=diamond, fillcolor="#F7DC6F", penwidth=2.0, color="#333333"];
+  n15 [label="⊗  MatMul\n(4×8)\n‖∇‖=0.0787", shape=box, fillcolor="#A9DFBF", penwidth=1.0, color="#333333"];
+  n16 [label="⊗  Transpose\n(2×8)\n‖∇‖=0.0659", shape=box, fillcolor="#A9DFBF", penwidth=1.0, color="#333333"];
+  n17 [label="DATA\n(4×2)", shape=box, fillcolor="#D5D8DC", penwidth=1.0, color="#333333"];
+  n18 [label="PARAM\n(8×2)\n‖∇‖=0.0659", shape=diamond, fillcolor="#F7DC6F", penwidth=2.0, color="#333333"];
+
+  n1 -> n0 [label="(4×1)"];
+  n2 -> n1 [label="(4×1)"];
+  n3 -> n1 [label="scalar"];
+  n4 -> n2 [label="(4×4)"];
+  n5 -> n2 [label="(4×1)"];
+  n6 -> n4 [label="(4×4)"];
+  n7 -> n5 [label="(1×4)"];
+  n8 -> n6 [label="(4×4)"];
+  n9 -> n6 [label="(4)"];
+  n10 -> n8 [label="(8×4)"];
+  n11 -> n8 [label="(4×8)"];
+  n12 -> n10 [label="(4×8)"];
+  n13 -> n11 [label="(4×8)"];
+  n14 -> n13 [label="(8)"];
+  n15 -> n13 [label="(4×8)"];
+  n16 -> n15 [label="(2×8)"];
+  n17 -> n15 [label="(4×2)"];
+  n18 -> n16 [label="(8×2)"];
+}
