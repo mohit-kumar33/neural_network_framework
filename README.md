@@ -1,4 +1,3 @@
-# neural_network_framework
 <div align="center">
 
 # 🧠 neural_network_framework
